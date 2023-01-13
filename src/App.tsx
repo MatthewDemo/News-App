@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { NewsItem } from "./redux/slices/newsSlice";
 
-
-
 function App() {
   const searchValue = useSelector((store: RootState) => store.news.searchValue);
   const news = useSelector((store: RootState) => store.news.news);
@@ -40,7 +38,6 @@ function App() {
   //         searchValue,
   //          `<span className="highlight">${searchValue}< /span>`
   //       );
-
   //       elem.innerHTML = text;
   //     }
   //   };

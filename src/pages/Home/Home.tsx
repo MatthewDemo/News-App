@@ -25,8 +25,6 @@ const Home: React.FC<HomeProps> = ({ filteredNews }) => {
     []
   );
 
-  console.log(Array.isArray(filteredNews));
-
   return (
     <div className="App">
       <h2 className="filterText">Filter by keywords</h2>
