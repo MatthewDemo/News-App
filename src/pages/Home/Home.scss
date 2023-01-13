@@ -1,0 +1,111 @@
+/* ::-webkit-validation-bubble-arrow-clipper */
+
+.App {
+  margin-left: 75px;
+  margin-top: 50px;
+  font-family: "Montserrat";
+  color: #363636;
+}
+.filterText {
+  font-size: 16px;
+}
+
+.resultText {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.input-container {
+  height: 48.8px;
+  width: 598.8px;
+  left: 0px;
+  top: 0px;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  position: relative;
+
+  input {
+    position: absolute;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    font-family: "Montserrat";
+    margin-left: 20px;
+    margin-top: 16px;
+  }
+
+  img {
+    height: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card {
+  height: 520px;
+  width: 320px;
+  border-radius: 5px;
+  border: 1px solid rgb(202, 202, 202);
+  -webkit-box-shadow: 5px 7px 10px -4px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 5px 7px 10px -4px rgba(0, 0, 0, 0.6);
+  box-shadow: 5px 7px 10px -4px rgba(0, 0, 0, 0.6);
+  margin: 45px;
+  position: relative;
+
+  .newsImg {
+    width: 320px;
+    max-height: 200px;
+  }
+
+  .date-on-card {
+    margin-left: 26.33px;
+  }
+
+  .calendarImg {
+    width: 15px;
+    opacity: 0.5;
+  }
+
+  .dateText {
+    display: inline-block;
+    margin-left: 5px;
+    opacity: 0.5;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+  }
+
+  .card-text {
+    font-size: 16px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 0;
+  }
+
+  .moreBtn {
+    font-weight: 700;
+    margin-left: 20px;
+    position: absolute;
+    bottom: 20px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .moreBtn:hover {
+    transform: scale(1.1);
+  }
+}
