@@ -1,11 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Info from "./pages/Info/Info";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { NewsItem } from "./redux/slices/newsSlice";
+import { NewsItem, Source } from "./redux/slices/newsSlice";
+import { findMatch } from "./hightlightFunction";
+
+export type Highlight = {
+  title: JSX.Element | string;
+  source: Source;
+  author: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+};
 
 function App() {
   const searchValue = useSelector((store: RootState) => store.news.searchValue);
@@ -14,40 +26,24 @@ function App() {
     return item.title.toLowerCase().includes(searchValue.toLowerCase());
   });
 
-  // useEffect(() => {
-  //   const highlightWord = () => {
-  //     for (let elem of filteredNews) {
-  //       let text = elem.title.replaceAll(
-  //         searchValue,
-  //         `<span className="highlight">${searchValue}< /span>`
-  //       );
-  //       console.log(text)
-  //       elem.title = text
-  //     }
-  //   };
-  //   highlightWord();
-  // }, [searchValue]);
+  const [highlighted, setHighlighted] = useState<Highlight[]>([]);
 
-  // useEffect(() => {
-  //   const highlightWord = () => {
-  //     let arr = document.getElementsByClassName("card-title");
-  //     for (let elem of arr) {
-  //       console.log(elem.innerHTML);
-
-  //       let text = elem.textContent.replaceAll(
-  //         searchValue,
-  //          `<span className="highlight">${searchValue}< /span>`
-  //       );
-  //       elem.innerHTML = text;
-  //     }
-  //   };
-  //   highlightWord();
-  // }, [searchValue]);
+  useEffect(() => {
+    if (searchValue && filteredNews.length > 0) {
+      const testtest: Highlight[] = filteredNews.map((item) => {
+        const testObj = { ...item, title: findMatch(item.title, searchValue) };
+        return testObj;
+      });
+      setHighlighted(testtest);
+    } else if (filteredNews.length > 0) {
+      setHighlighted(filteredNews);
+    }
+  }, [searchValue, filteredNews.length]);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home filteredNews={filteredNews} />} />
+        <Route path="/" element={<Home filteredNews={highlighted} />} />
         <Route path="/info" element={<Info filteredNews={filteredNews} />} />
       </Routes>
     </>

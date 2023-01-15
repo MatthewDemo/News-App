@@ -21,7 +21,17 @@ export type NewsItem = {
   publishedAt: string;
   content: string;
 };
-
+export type Highlight = {
+  title: JSX.Element | string;
+  source: Source;
+  author: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+};
+ 
 const initialState: newsSliceState = {
   searchValue: "",
   news: [],

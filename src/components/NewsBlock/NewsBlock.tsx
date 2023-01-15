@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIndex } from "../../redux/slices/newsSlice";
+import { Highlight } from "../../App";
 
 
 type Source = {
@@ -18,7 +19,7 @@ type NewsItem = {
   content: string;
 };
 type NewsBlockProps = {
-  item: NewsItem;
+  item: Highlight;
   idx: number
 };
 

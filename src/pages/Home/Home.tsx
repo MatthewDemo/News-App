@@ -3,12 +3,12 @@ import "./Home.scss";
 import NewsBlock from "../../components/NewsBlock/NewsBlock";
 import debounce from "lodash.debounce";
 import { useDispatch } from "react-redux";
-import { NewsItem, setSearchValue } from "../../redux/slices/newsSlice";
+import { Highlight, NewsItem, setSearchValue } from "../../redux/slices/newsSlice";
 import { fetchNews } from "../../redux/slices/newsSlice";
 import { store } from "../../redux/store";
 
 type HomeProps = {
-  filteredNews: NewsItem[];
+  filteredNews: Highlight[];
 };
 
 const Home: React.FC<HomeProps> = ({ filteredNews }) => {
@@ -38,7 +38,7 @@ const Home: React.FC<HomeProps> = ({ filteredNews }) => {
       </div>
       <h2 className="resultText">Results : {filteredNews.length}</h2> <hr />
       <div className="card-container">
-        {filteredNews.map((item: NewsItem, idx: number) => (
+        {filteredNews.map((item: Highlight, idx: number) => (
           <NewsBlock key={idx} item={item} idx={idx} />
         ))}
       </div>
