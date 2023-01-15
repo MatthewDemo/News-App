@@ -5,6 +5,7 @@ export interface newsSliceState {
   searchValue: string;
   news: NewsItem[];
   index: number;
+  highlighted: Highlight[];
   status: "loading" | "success" | "error";
 }
 export type Source = {
@@ -31,11 +32,12 @@ export type Highlight = {
   publishedAt: string;
   content: string;
 };
- 
+
 const initialState: newsSliceState = {
   searchValue: "",
   news: [],
   index: 0,
+  highlighted: [],
   status: "loading",
 };
 
@@ -51,6 +53,9 @@ export const newsSlice = createSlice({
     },
     setIndex: (state, action: PayloadAction<number>) => {
       state.index = action.payload;
+    },
+    setHighlighted: (state, action: PayloadAction<Highlight[]>) => {
+      state.highlighted = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -71,7 +76,8 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { setSearchValue, setNews, setIndex } = newsSlice.actions;
+export const { setSearchValue, setNews, setIndex, setHighlighted } =
+  newsSlice.actions;
 
 export const fetchNews = createAsyncThunk("news/fetchNewsStatus", async () => {
   const res = await axios.get(

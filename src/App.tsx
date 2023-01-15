@@ -1,32 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Info from "./pages/Info/Info";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { NewsItem, Source } from "./redux/slices/newsSlice";
+import { Highlight, NewsItem, setHighlighted } from "./redux/slices/newsSlice";
 import { findMatch } from "./hightlightFunction";
 
-export type Highlight = {
-  title: JSX.Element | string;
-  source: Source;
-  author: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
-};
-
 function App() {
+  const dispatch = useDispatch();
+
   const searchValue = useSelector((store: RootState) => store.news.searchValue);
   const news = useSelector((store: RootState) => store.news.news);
+  const highlighted = useSelector((store: RootState) => store.news.highlighted);
   const filteredNews: NewsItem[] = news.filter((item: { title: string }) => {
     return item.title.toLowerCase().includes(searchValue.toLowerCase());
   });
-
-  const [highlighted, setHighlighted] = useState<Highlight[]>([]);
 
   useEffect(() => {
     if (searchValue && filteredNews.length > 0) {
@@ -34,9 +24,9 @@ function App() {
         const testObj = { ...item, title: findMatch(item.title, searchValue) };
         return testObj;
       });
-      setHighlighted(testtest);
+      dispatch(setHighlighted(testtest));
     } else if (filteredNews.length > 0) {
-      setHighlighted(filteredNews);
+      dispatch(setHighlighted(filteredNews));
     }
   }, [searchValue, filteredNews.length]);
 

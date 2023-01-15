@@ -1,28 +1,11 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setIndex } from "../../redux/slices/newsSlice";
-import { Highlight } from "../../App";
+import { Highlight, setIndex } from "../../redux/slices/newsSlice";
 
-
-type Source = {
-  id: string;
-  name: string;
-};
-type NewsItem = {
-  source: Source;
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
-};
 type NewsBlockProps = {
   item: Highlight;
-  idx: number
+  idx: number;
 };
-
 
 const NewsBlock: React.FC<NewsBlockProps> = ({ item, idx }) => {
   const dispatch = useDispatch();
